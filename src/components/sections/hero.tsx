@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { TarotCard } from "@/components/sections/tarot-card";
 
 export function Hero() {
   return (
@@ -27,28 +28,7 @@ export function Hero() {
         </div>
 
         <div className="order-first flex justify-center [perspective:1400px] md:order-last">
-          <div className="group relative h-[440px] w-[280px] -rotate-4 rounded-[10px] border-[1.5px] border-gold bg-[linear-gradient(160deg,#21213a,#14141f_70%)] shadow-[0_30px_70px_rgba(0,0,0,0.55),0_0_0_6px_rgba(201,162,39,0.06)] transition-transform duration-500 hover:translate-y-[-6px] hover:rotate-0">
-            <span className="absolute top-3.5 left-3.5 h-5 w-5 border-t-[1.5px] border-l-[1.5px] border-gold/70" />
-            <span className="absolute bottom-3.5 right-3.5 h-5 w-5 border-b-[1.5px] border-r-[1.5px] border-gold/70" />
-            <div className="absolute inset-[26px] flex flex-col items-center justify-between border border-gold/40 px-3.5 py-6.5 text-center">
-              <span className="font-caps text-[0.75rem] tracking-[0.2em] text-gold-soft">
-                Carta&nbsp;I
-              </span>
-              <svg
-                viewBox="0 0 100 100"
-                fill="none"
-                stroke="#E0C468"
-                strokeWidth={1.2}
-                className="h-[74px] w-[74px]"
-              >
-                <circle cx="50" cy="38" r="16" />
-                <path d="M50 54 L50 82 M38 66 L62 66 M50 22 L50 6 M32 20 L38 26 M68 20 L62 26" />
-              </svg>
-              <span className="font-display text-2xl text-parchment-light italic">
-                A Guia
-              </span>
-            </div>
-          </div>
+          <TarotCard />
         </div>
       </div>
     </section>

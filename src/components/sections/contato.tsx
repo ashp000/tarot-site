@@ -40,26 +40,17 @@ export function Contato() {
             Instagram — respondo por lá também.
           </p>
           <div className="flex flex-col gap-3.5">
-            <a
-              href="#"
-              className="flex items-center gap-3 border-b border-line py-3 text-[0.95rem] text-parchment-light transition-colors hover:text-gold-soft"
-            >
+            <a href="https://wa.me/5512982153029" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 border-b border-line py-3 text-[0.95rem] text-parchment-light transition-colors hover:text-gold-soft">
               <MessageCircle className="size-4.5 text-gold" strokeWidth={1.5} />
-              WhatsApp — (11) 90000-0000
+              WhatsApp — +55 12 98215-3029
             </a>
-            <a
-              href="#"
-              className="flex items-center gap-3 border-b border-line py-3 text-[0.95rem] text-parchment-light transition-colors hover:text-gold-soft"
-            >
+            <a href="#" className="flex items-center gap-3 border-b border-line py-3 text-[0.95rem] text-parchment-light transition-colors hover:text-gold-soft">
               <AtSign className="size-4.5 text-gold" strokeWidth={1.5} />
-              @arcanodalua
+              @mystlcspell
             </a>
-            <a
-              href="#"
-              className="flex items-center gap-3 border-b border-line py-3 text-[0.95rem] text-parchment-light transition-colors hover:text-gold-soft"
-            >
+            <a href="#" className="flex items-center gap-3 border-b border-line py-3 text-[0.95rem] text-parchment-light transition-colors hover:text-gold-soft">
               <Mail className="size-4.5 text-gold" strokeWidth={1.5} />
-              helena@arcanodalua.com
+              vivs80224@gmail.com
             </a>
           </div>
         </div>
