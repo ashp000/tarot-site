@@ -14,15 +14,47 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export function Contato() {
-  const [enviado, setEnviado] = useState(false);
+type Status = "idle" | "enviando" | "sucesso" | "erro";
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+export function Contato() {
+  const [status, setStatus] = useState<Status>("idle");
+  const [erroMsg, setErroMsg] = useState("");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // Formulário de demonstração — sem envio real ainda.
-    // Ligue isso a uma rota /api (Node.js) ou a um serviço como Resend/Formspree.
-    setEnviado(true);
-    e.currentTarget.reset();
+    const form = e.currentTarget;
+    const dados = new FormData(form);
+
+    setStatus("enviando");
+    setErroMsg("");
+
+    try {
+      const res = await fetch("/api/agendar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nome: dados.get("nome"),
+          contato: dados.get("contato"),
+          perguntas: dados.get("perguntas"),
+          data: dados.get("data"),
+          msg: dados.get("msg"),
+        }),
+      });
+
+      const json = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        setStatus("erro");
+        setErroMsg(json.error || "Não foi possível enviar. Tente novamente.");
+        return;
+      }
+
+      setStatus("sucesso");
+      form.reset();
+    } catch {
+      setStatus("erro");
+      setErroMsg("Falha de conexão. Tente novamente em instantes.");
+    }
   }
 
   return (
@@ -61,15 +93,26 @@ export function Contato() {
             <Input id="nome" name="nome" required />
           </div>
           <div className="flex flex-col gap-2">
-            <Label htmlFor="tipo">Tipo de leitura</Label>
-            <Select name="tipo" defaultValue="geral">
-              <SelectTrigger id="tipo">
+            <Label htmlFor="contato">Seu e-mail ou WhatsApp</Label>
+            <Input
+              id="contato"
+              name="contato"
+              placeholder="para eu poder te responder"
+              required
+            />
+          </div>
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="perguntas">Quantas perguntas</Label>
+            <Select name="perguntas" defaultValue="1">
+              <SelectTrigger id="perguntas">
                 <SelectValue placeholder="Selecione" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="geral">Panorama Geral</SelectItem>
-                <SelectItem value="amor">Amor &amp; Vínculos</SelectItem>
-                <SelectItem value="carreira">Carreira &amp; Caminho</SelectItem>
+                <SelectItem value="1">1 pergunta — R$ 10</SelectItem>
+                <SelectItem value="2">2 perguntas — R$ 18</SelectItem>
+                <SelectItem value="3">3 perguntas — R$ 25</SelectItem>
+                <SelectItem value="4">4 perguntas — R$ 32</SelectItem>
+                <SelectItem value="5">5 perguntas — R$ 45</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -85,13 +128,16 @@ export function Contato() {
               placeholder="Conte um pouco do que busca nessa leitura..."
             />
           </div>
-          <Button type="submit" className="mt-2 self-start">
-            Enviar pedido
+          <Button type="submit" className="mt-2 self-start" disabled={status === "enviando"}>
+            {status === "enviando" ? "Enviando..." : "Enviar pedido"}
           </Button>
-          {enviado && (
+          {status === "sucesso" && (
             <p className="text-sm text-gold-soft">
-              Pedido enviado! (formulário de demonstração — ainda sem envio real)
+              Pedido enviado! Você receberá uma resposta em breve.
             </p>
+          )}
+          {status === "erro" && (
+            <p className="text-sm text-wine">{erroMsg}</p>
           )}
         </form>
       </div>

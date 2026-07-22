@@ -6,8 +6,8 @@ const depoimentos = [
   },
   {
     texto:
-      '"Fiz online e pareceu tão próximo quanto presencial. Voltei duas vezes desde então."',
-    autor: "Thiago M.",
+      '"Ela realmente conesguiu me ajudar coisas que eu já estava querendo saber. Recomendo muito!"',
+    autor: "Pedro C.",
   },
   {
     texto: '"Nunca tinha tirado uma carta na vida. Ela explicou tudo com muita paciência."',
