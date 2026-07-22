@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Arcano da Lua — Leituras de Tarot",
+  title: "Mystic Spell — Cartomancia",
   description:
     "Sessões de tarot para clareza em amor, trabalho e nas encruzilhadas da vida — pessoalmente ou por chamada de vídeo.",
 };

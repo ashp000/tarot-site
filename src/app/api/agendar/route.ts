@@ -47,8 +47,8 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify({
         // "onboarding@resend.dev" funciona sem precisar verificar domínio próprio.
         // Quando tiver um domínio verificado no Resend, troque por algo como
-        // "Arcano da Lua <agendamentos@seudominio.com>".
-        from: "Arcano da Lua <onboarding@resend.dev>",
+        // "Mystic Spell <agendamentos@seudominio.com>".
+        from: "Mystic Spell <onboarding@resend.dev>",
         to: destino,
         subject: `Novo pedido de leitura — ${nome}`,
         text: linhas,
