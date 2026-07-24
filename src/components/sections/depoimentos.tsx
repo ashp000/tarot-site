@@ -6,7 +6,7 @@ const depoimentos = [
   },
   {
     texto:
-      '"Ela realmente conesguiu me ajudar coisas que eu já estava querendo saber. Recomendo muito!"',
+      '"Ela realmente conseguiu me ajudar coisas que eu já estava querendo saber. Recomendo muito!"',
     autor: "Pedro C.",
   },
   {

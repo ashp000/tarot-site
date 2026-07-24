@@ -130,6 +130,20 @@ body::before {
   }
 }
 
+/* corrige o fundo claro que o navegador força no autofill/autocomplete */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--parchment-light);
+  -webkit-box-shadow: 0 0 0px 1000px var(--ink-deep) inset;
+  box-shadow: 0 0 0px 1000px var(--ink-deep) inset;
+  transition: background-color 9999s ease-in-out 0s;
+  caret-color: var(--parchment-light);
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     transition: none !important;
