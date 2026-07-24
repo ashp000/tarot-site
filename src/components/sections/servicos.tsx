@@ -1,3 +1,5 @@
+"use client";
+
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 const precos = [
@@ -9,6 +11,13 @@ const precos = [
 ];
 
 export function Servicos() {
+  function handleSelect(qtd: string) {
+    window.dispatchEvent(
+      new CustomEvent("mystic:selecionar-perguntas", { detail: qtd })
+    );
+    document.getElementById("contato")?.scrollIntoView({ behavior: "smooth" });
+  }
+
   return (
     <section id="servicos" className="relative z-10 py-28">
       <div className="mx-auto max-w-5xl px-7">
@@ -29,7 +38,13 @@ export function Servicos() {
           {precos.map((p) => (
             <Card
               key={p.num}
-              className="flex flex-col items-center text-center hover:-translate-y-1 hover:border-gold"
+              onClick={() => handleSelect(p.qtd)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") handleSelect(p.qtd);
+              }}
+              className="flex cursor-pointer flex-col items-center text-center transition-all hover:-translate-y-1 hover:border-gold hover:shadow-[0_10px_30px_rgba(201,162,39,0.15)]"
             >
               <CardHeader className="w-full items-center pb-0">
                 <span className="font-caps mb-4 block text-[0.75rem] tracking-[0.15em] text-gold">
@@ -53,7 +68,7 @@ export function Servicos() {
         </div>
 
         <p className="mt-10 text-center text-[0.85rem] text-parchment-light/50">
-          Agende diretamente por WhatsApp ou pelo formulário abaixo.
+          Clique em uma opção para agendar, ou preencha o formulário abaixo.
         </p>
       </div>
     </section>

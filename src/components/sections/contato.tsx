@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MessageCircle, Mail, AtSign } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -19,6 +19,17 @@ type Status = "idle" | "enviando" | "sucesso" | "erro";
 export function Contato() {
   const [status, setStatus] = useState<Status>("idle");
   const [erroMsg, setErroMsg] = useState("");
+  const [perguntas, setPerguntas] = useState("1");
+
+  useEffect(() => {
+    function handleSelecionar(e: Event) {
+      const custom = e as CustomEvent<string>;
+      if (custom.detail) setPerguntas(custom.detail);
+    }
+    window.addEventListener("mystic:selecionar-perguntas", handleSelecionar);
+    return () =>
+      window.removeEventListener("mystic:selecionar-perguntas", handleSelecionar);
+  }, []);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -51,6 +62,7 @@ export function Contato() {
 
       setStatus("sucesso");
       form.reset();
+      setPerguntas("1");
     } catch {
       setStatus("erro");
       setErroMsg("Falha de conexão. Tente novamente em instantes.");
@@ -78,11 +90,11 @@ export function Contato() {
             </a>
             <a href="#" className="flex items-center gap-3 border-b border-line py-3 text-[0.95rem] text-parchment-light transition-colors hover:text-gold-soft">
               <AtSign className="size-4.5 text-gold" strokeWidth={1.5} />
-              @mystlcspell
+              @mysticspell
             </a>
             <a href="#" className="flex items-center gap-3 border-b border-line py-3 text-[0.95rem] text-parchment-light transition-colors hover:text-gold-soft">
               <Mail className="size-4.5 text-gold" strokeWidth={1.5} />
-              vivs80224@gmail.com
+              vitoria@mysticspell.com
             </a>
           </div>
         </div>
@@ -103,7 +115,7 @@ export function Contato() {
           </div>
           <div className="flex flex-col gap-2">
             <Label htmlFor="perguntas">Quantas perguntas</Label>
-            <Select name="perguntas" defaultValue="1">
+            <Select name="perguntas" value={perguntas} onValueChange={setPerguntas}>
               <SelectTrigger id="perguntas">
                 <SelectValue placeholder="Selecione" />
               </SelectTrigger>
