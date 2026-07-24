@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { AmbientGlow } from "@/components/ambient-glow";
 
 export const metadata: Metadata = {
   title: "Mystic Spell — Cartomancia",
@@ -22,7 +23,10 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-full flex flex-col bg-ink text-parchment-light">{children}</body>
+      <body className="min-h-full flex flex-col bg-ink text-parchment-light">
+        <AmbientGlow />
+        {children}
+      </body>
     </html>
   );
 }
