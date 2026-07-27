@@ -21,6 +21,7 @@ export function Contato() {
   const [status, setStatus] = useState<Status>("idle");
   const [erroMsg, setErroMsg] = useState("");
   const [perguntas, setPerguntas] = useState("1");
+  const today = new Date().toISOString().split("T")[0];
 
   useEffect(() => {
     function handleSelecionar(e: Event) {
@@ -131,7 +132,7 @@ export function Contato() {
           </div>
           <div className="flex flex-col gap-2">
             <Label htmlFor="data">Data preferida</Label>
-            <Input id="data" name="data" type="date" />
+            <Input id="data" name="data" type="date" min={today} />
           </div>
           <div className="flex flex-col gap-2">
             <Label htmlFor="msg">Mensagem (opcional)</Label>
