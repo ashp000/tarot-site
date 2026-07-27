@@ -1,6 +1,17 @@
 import { NextRequest } from "next/server";
+import { isAllowedOrigin, isRateLimited } from "@/lib/api-guard";
 
 export async function POST(req: NextRequest) {
+  if (!isAllowedOrigin(req)) {
+    return Response.json({ error: "Origem não permitida." }, { status: 403 });
+  }
+  if (isRateLimited(req)) {
+    return Response.json(
+      { error: "Muitas tentativas. Aguarde alguns minutos e tente novamente." },
+      { status: 429 }
+    );
+  }
+
   try {
     const body = await req.json();
     const { nome, contato, perguntas, data, msg } = body ?? {};
