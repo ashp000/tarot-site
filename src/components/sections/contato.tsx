@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { MessageCircle, Mail, AtSign } from "lucide-react";
+import { Mail } from "lucide-react";
+import { WhatsAppIcon, InstagramIcon } from "@/lib/icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -85,11 +86,11 @@ export function Contato() {
           </p>
           <div className="flex flex-col gap-3.5">
             <a href="https://wa.me/5512982153029" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 border-b border-line py-3 text-[0.95rem] text-parchment-light transition-colors hover:text-gold-soft">
-              <MessageCircle className="size-4.5 text-gold" strokeWidth={1.5} />
+              <WhatsAppIcon className="size-4.5 text-gold" />
               WhatsApp — +55 12 98215-3029
             </a>
             <a href="#" className="flex items-center gap-3 border-b border-line py-3 text-[0.95rem] text-parchment-light transition-colors hover:text-gold-soft">
-              <AtSign className="size-4.5 text-gold" strokeWidth={1.5} />
+              <InstagramIcon className="size-4.5 text-gold" />
               @mysticspell
             </a>
             <a href="#" className="flex items-center gap-3 border-b border-line py-3 text-[0.95rem] text-parchment-light transition-colors hover:text-gold-soft">

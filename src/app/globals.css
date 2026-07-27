@@ -131,6 +131,19 @@ body::before {
 }
 
 /* corrige o fundo claro que o navegador força no autofill/autocomplete */
+@media (hover: none) {
+  .cursor-glow {
+    display: none;
+  }
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 1;
+  filter: invert(70%) sepia(48%) saturate(500%) hue-rotate(360deg) brightness(95%) contrast(92%);
+}
+
+/* corrige o fundo claro que o navegador força no autofill/autocomplete */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
